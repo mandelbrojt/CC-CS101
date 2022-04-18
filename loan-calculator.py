@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 amount = float(input("How much money do you need to borrow?: "))
 print()
 monthly_term = int(input("In how many months do you want to finish paying your loan?: "))
@@ -14,12 +17,13 @@ class Loan:
         self.input_interest_rate = interest_rate
         self.input_amortization_type = amortization_type
     
+    # Give a description of the loan main parameters
     def __repr__(self):
         description = "Your loan of {loan_amount} dollars will be paid in {term} months and ".format(loan_amount=amount, term=monthly_term)
         if amortization_type == 1:
-            description += "in each month you will have to pay interest and principal."
+            description += "you will pay interest and principal in each month."
         elif amortization_type == 2:
-            description += "in each month you will have to pay the interest.\nThe principal will be paid in the last month of the term."
+            description += "you will have to pay the interest each month.\nThe principal will be paid in the last month of the term."
         elif amortization_type == 3:
             description += "the interest and principal will be paid at maturity."
         return description
@@ -27,3 +31,8 @@ class Loan:
 print("Here is a brief description of your loan: \n")
 loan = Loan(amount, monthly_term, interest_rate, amortization_type)
 print(loan)
+
+periods = [i for i in range(loan.input_monthly_term+1)]
+print(periods)
+
+print(datetime.now())
